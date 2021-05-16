@@ -3,34 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Калькулятор</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
-    <div>
-        <h1>Калькулятор для расчёта частоты колебаний контура</h1>
+    <div class="container">
+        <h1>Калькулятор для расчёта частоты <br>колебаний контура</h1>
         <form>
-            <label>Индуктивность колебательного контура</label>
-            <input type="text">
-            <select name="edinizy">
-                <option value="Гн" selected>Гн</option>
-                <option value="мГн">мГн</option>
-                <option value="мкГн">мкГн</option>
-                <option value="нГн">нГн</option>
-                <option value="пГн">пГн</option>
-            </select>
-            <label>Ёмкость колебательного контура</label>
-            <input type="text">
-            <select name="edinizy">
-                <option value="Ф" selected>Ф</option>
-                <option value="мФ">мФ</option>
-                <option value="мкФ">мкФ</option>
-                <option value="нФ">нФ</option>
-                <option value="пФ">пФ</option>
-            </select>
-            <span>Результат расчёта: </span>
-            <button name="submit">
-                <strong>Вычислить</strong>
-            </button>
+            <div class="pole1">
+                <label>Индуктивность колебательного контура</label>
+                <input type="text">
+                <select class="edinizy" name="edinizy">
+                    <option value="Гн" selected>Гн</option>
+                    <option value="мГн">мГн</option>
+                    <option value="мкГн">мкГн</option>
+                    <option value="нГн">нГн</option>
+                    <option value="пГн">пГн</option>
+                </select>
+            </div>
+
+            <div class="pole2">
+                <label>Ёмкость колебательного контура</label>
+                <input type="text">
+                <select class="edinizy" name="edinizy">
+                    <option value="Ф" selected>Ф</option>
+                    <option value="мФ">мФ</option>
+                    <option value="мкФ">мкФ</option>
+                    <option value="нФ">нФ</option>
+                    <option value="пФ">пФ</option>
+                </select>
+            </div>
+            <div class="result">
+                <div>
+                    <span>Результат расчёта: </span>
+                    <span class="return"><span></span></span>
+                </div>
+                <button name="submit">
+                    <strong>Вычислить</strong>
+                </button>
+            </div>
         </form>
     </div>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

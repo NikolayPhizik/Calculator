@@ -1,0 +1,93 @@
+.container {
+    width: 500px;
+    height: 300px;
+    margin: auto;
+    margin-top: 150px;
+    border-radius: 20px;
+    background-color: aquamarine;
+    box-shadow: 0px 0px 21px 6px rgba(0,0,0,0.75);
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    text-shadow: 4px 4px 5px rgba(0,0,0,0.44);
+    font-size: 20px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+input {
+    width: 50px;
+}
+
+.edinizy {
+    width: 50px;
+}
+
+label {
+    font-size: 18px;
+    margin-left: 30px;
+    margin-right: 22px;
+}
+
+.pole1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pole2 {
+    margin-bottom: 30px;
+}
+
+.pole2 label{
+    margin-left: 30px;
+    margin-right: 77px;
+}
+
+.result {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+span {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+.return {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 20px;
+    list-style: none;
+    color: #FFF;
+    background: linear-gradient(#f90909, #f95d5d);
+}
+
+button:hover {
+    background: linear-gradient(#f95d5d, #f90909);
+}
+
+.return {
+    display: inline-block;
+    height: 20px;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 0 5px;
+}
