@@ -3,9 +3,30 @@
     height: 300px;
     margin: auto;
     margin-top: 150px;
+    position: relative;
+    z-index: 3;
+}
+
+.calcF,
+.calcL,
+.calcC {
     border-radius: 20px;
     background-color: aquamarine;
     box-shadow: 0px 0px 21px 6px rgba(0,0,0,0.75);
+}
+
+.calcF {
+    position: absolute;
+    z-index: 4;
+}
+
+.calcL {
+    position: absolute;
+    z-index: 1;
+}
+.calcC {
+    position: absolute;
+    z-index: 0;
 }
 
 h1 {
@@ -30,24 +51,64 @@ input {
     width: 50px;
 }
 
-label {
+.calcF label {
     font-size: 18px;
     margin-left: 30px;
     margin-right: 22px;
 }
 
-.pole1 {
+.calcF .pole1 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.pole2 {
+.calcF .pole2 {
     margin-bottom: 30px;
 }
 
-.pole2 label{
+.calcF .pole2 label{
     margin-left: 30px;
     margin-right: 76px;
+}
+
+.calcL label {
+    font-size: 18px;
+    margin-left: 30px;
+    margin-right: 79px;
+}
+
+.calcL .pole1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.calcL .pole2 {
+    margin-bottom: 30px;
+}
+
+.calcL .pole2 label{
+    margin-left: 30px;
+    margin-right: 76px;
+}
+
+.calcC label {
+    font-size: 18px;
+    margin-left: 30px;
+    margin-right: 80px;
+}
+
+.calcC .pole1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.calcC .pole2 {
+    margin-bottom: 30px;
+}
+
+.calcC .pole2 label{
+    margin-left: 30px;
+    margin-right: 22px;
 }
 
 .result {
@@ -71,6 +132,7 @@ span {
 
 button {
     margin-top: 10px;
+    margin-bottom: 15px;
     width: 150px;
     height: 40px;
     font-size: 18px;
