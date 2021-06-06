@@ -66,26 +66,21 @@ function processingTheResult(intermediateValue) {
     if (intermediateValue >= 0.001 && intermediateValue < 1) {
         intermediateValue = Math.round(intermediateValue * 1000 * 100) / 100;
         result = `${intermediateValue} ${obj.units(0.001)}`;
-        return console.log(result);
 
     } else if (intermediateValue >= 1 && intermediateValue < 1000) {
         result = `${Math.round(intermediateValue * 100) / 100} ${obj.units(1)}`;
-        return console.log(result);
 
     } else if (intermediateValue >= 1000 && intermediateValue < 1000000) {
         intermediateValue = Math.round(intermediateValue / 1000 * 100) / 100;
         result = `${intermediateValue} ${obj.units(1000)}`;
-        return console.log(result);
 
     } else if (intermediateValue >= 1000000 && intermediateValue < 1000000000) {
         intermediateValue = Math.round(intermediateValue / 1000000 * 100) / 100;
         result = `${intermediateValue} ${obj.units(1000000)}`;
-        return console.log(result);
 
     } else if (intermediateValue >= 1000000000 && intermediateValue < 1000000000000) {
         intermediateValue = Math.round(intermediateValue / 1000000000 * 100) / 100;
         result = `${intermediateValue} ${obj.units(1000000000)}`;
-        return console.log(result);
-
     }
+    return console.log(result);
 }
