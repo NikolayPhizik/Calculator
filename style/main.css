@@ -1,8 +1,8 @@
 .container {
     width: 500px;
-    height: 300px;
+    height: 350px;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 100px;
     position: relative;
     z-index: 3;
 }
@@ -10,6 +10,7 @@
 .calcF,
 .calcL,
 .calcC {
+    height: 100%;
     border-radius: 20px;
     background-color: aquamarine;
     box-shadow: 0px 0px 21px 6px rgba(0,0,0,0.75);
@@ -22,11 +23,15 @@
 
 .calcL {
     position: absolute;
-    z-index: 1;
+    z-index: 0;
 }
 .calcC {
     position: absolute;
-    z-index: 0;
+    z-index: 1;
+}
+
+.z-index {
+    z-index: 5;
 }
 
 h1 {
@@ -130,7 +135,7 @@ span {
     font-weight: bold;
 }
 
-button {
+.button {
     margin-top: 10px;
     margin-bottom: 15px;
     width: 150px;
@@ -142,8 +147,26 @@ button {
     background: linear-gradient(#f90909, #f95d5d);
 }
 
-button:hover {
+.button:hover {
     background: linear-gradient(#f95d5d, #f90909);
+}
+
+.zakladkiF,
+.zakladkiL,
+.zakladkiC {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color:burlywood;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background-color:cadetblue;
 }
 
 .return {

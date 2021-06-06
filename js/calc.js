@@ -34,7 +34,75 @@ let result;
 let coefficientL;
 let coefficientC;
 let coefficientF;
+let btn = document.querySelectorAll(".btn");
+let calcF = document.querySelector(".calcF");
+let calcL = document.querySelector(".calcL");
+let calcC = document.querySelector(".calcC");
 let button = document.querySelector(".button");
+
+btn[0].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcF.classList.remove("z-index");
+    calcC.classList.remove("z-index");
+    calcL.classList.add("z-index");
+});
+
+btn[1].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcF.classList.remove("z-index");
+    calcL.classList.remove("z-index");
+    calcC.classList.add("z-index");
+});
+
+btn[2].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcC.classList.remove("z-index");
+    calcL.classList.remove("z-index");
+    calcF.classList.add("z-index");
+});
+
+btn[3].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcF.classList.remove("z-index");
+    calcC.classList.remove("z-index");
+    calcL.classList.add("z-index");
+});
+
+btn[4].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcF.classList.remove("z-index");
+    calcL.classList.remove("z-index");
+    calcC.classList.add("z-index");
+});
+
+btn[5].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcC.classList.remove("z-index");
+    calcL.classList.remove("z-index");
+    calcF.classList.add("z-index");
+});
+
+btn[6].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcF.classList.remove("z-index");
+    calcC.classList.remove("z-index");
+    calcL.classList.add("z-index");
+});
+
+btn[7].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcF.classList.remove("z-index");
+    calcL.classList.remove("z-index");
+    calcC.classList.add("z-index");
+});
+
+btn[8].addEventListener("click", (evt) => {
+    evt.preventDefault();
+    calcC.classList.remove("z-index");
+    calcL.classList.remove("z-index");
+    calcF.classList.add("z-index");
+});
+
 
 button.addEventListener("click", (evt) => {
     evt.preventDefault();
