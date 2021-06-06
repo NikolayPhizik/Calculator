@@ -21,51 +21,71 @@ let obj = {
     }
 };
 
-let numL = 7;
-let numC = 8;
-let number = [numL, numC];
+let numL = document.querySelector(".numL");
+let numC = document.querySelector(".numC");
+let edinizyL = document.querySelector(".L");
+let edinizyC = document.querySelector(".C");
+let number;
+let numberL;
+let numberC;
 let intermediateValue;
 let result;
-let coefficientL = obj.units("мкГн");
-let coefficientC = obj.units("мкФ");
+let coefficientL;
+let coefficientC;
 let coefficientF;
+let button = document.querySelector(".button");
+
+button.addEventListener("click", (evt) => {
+    evt.preventDefault();
+    number = [+numL.value, +numC.value];
+    numValidator(number);
+});
 
 function numValidator(number) {
+    coefficientL = obj.units(edinizyL.value);
+    coefficientC = obj.units(edinizyC.value);
+    
     if (number[0] !== "" && isNaN(number[0]) === false){
+        numberL = number[0];
         if (number[1] !== "" && isNaN(number[1]) === false) {
-            return calc(numL, numC, coefficientL, coefficientC);
+            numberC = number[1];
+            return calc(numberL, numberC, coefficientL, coefficientC);
         }
     }
-    return result = "Не правильно введены данные!";
+    result = "Не правильно введены данные!";
+    return console.log(result);
 }
 
-function calc(numL, numC, coefficientL, coefficientC) {
-    intermediateValue = 1 / (2 * Math.PI * Math.sqrt(numL * coefficientL * numC * coefficientC));
-     return processingTheResult(intermediateValue);
+function calc(numberL, numberC, coefficientL, coefficientC) {
+    intermediateValue = 1 / (2 * Math.PI * Math.sqrt(numberL * coefficientL * numberC * coefficientC));
+    return processingTheResult(intermediateValue);
 }
 
-console.log(numValidator(number));
-console.log(intermediateValue);
 
 function processingTheResult(intermediateValue) {
     if (intermediateValue >= 0.001 && intermediateValue < 1) {
         intermediateValue = Math.round(intermediateValue * 1000 * 100) / 100;
-        return result = `${intermediateValue} ${obj.units(0.001)}`
+        result = `${intermediateValue} ${obj.units(0.001)}`;
+        return console.log(result);
 
     } else if (intermediateValue >= 1 && intermediateValue < 1000) {
-        return result = `${Math.round(intermediateValue * 100) / 100} ${obj.units(1)}`
+        result = `${Math.round(intermediateValue * 100) / 100} ${obj.units(1)}`;
+        return console.log(result);
 
     } else if (intermediateValue >= 1000 && intermediateValue < 1000000) {
         intermediateValue = Math.round(intermediateValue / 1000 * 100) / 100;
-        return result = `${intermediateValue} ${obj.units(1000)}`
+        result = `${intermediateValue} ${obj.units(1000)}`;
+        return console.log(result);
 
     } else if (intermediateValue >= 1000000 && intermediateValue < 1000000000) {
         intermediateValue = Math.round(intermediateValue / 1000000 * 100) / 100;
-        return result = `${intermediateValue} ${obj.units(1000000)}`
+        result = `${intermediateValue} ${obj.units(1000000)}`;
+        return console.log(result);
 
     } else if (intermediateValue >= 1000000000 && intermediateValue < 1000000000000) {
         intermediateValue = Math.round(intermediateValue / 1000000000 * 100) / 100;
-        return result = `${intermediateValue} ${obj.units(1000000000)}`
+        result = `${intermediateValue} ${obj.units(1000000000)}`;
+        return console.log(result);
 
     }
 }
