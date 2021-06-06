@@ -25,6 +25,7 @@ let numL = document.querySelector(".numL");
 let numC = document.querySelector(".numC");
 let edinizyL = document.querySelector(".L");
 let edinizyC = document.querySelector(".C");
+let resultat = document.querySelector(".resultEnter");
 let number;
 let numberL;
 let numberC;
@@ -53,7 +54,7 @@ function numValidator(number) {
         }
     }
     result = "Не правильно введены данные!";
-    return console.log(result);
+    resultEnter(result);
 }
 
 function calc(numberL, numberC, coefficientL, coefficientC) {
@@ -82,5 +83,9 @@ function processingTheResult(intermediateValue) {
         intermediateValue = Math.round(intermediateValue / 1000000000 * 100) / 100;
         result = `${intermediateValue} ${obj.units(1000000000)}`;
     }
-    return console.log(result);
+    resultEnter(result);
+}
+
+function resultEnter(result) {
+    resultat.textContent = `${result}`;
 }
