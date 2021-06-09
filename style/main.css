@@ -4,34 +4,21 @@
     margin: auto;
     margin-top: 100px;
     position: relative;
-    z-index: 3;
 }
 
-.calcF,
-.calcL,
-.calcC {
+.calc {
     height: 100%;
     border-radius: 20px;
     background-color: aquamarine;
     box-shadow: 0px 0px 21px 6px rgba(0,0,0,0.75);
 }
 
-.calcF {
-    position: absolute;
-    z-index: 4;
+.hide {
+    display: none;
 }
 
-.calcL {
-    position: absolute;
-    z-index: 0;
-}
-.calcC {
-    position: absolute;
-    z-index: 1;
-}
-
-.z-index {
-    z-index: 5;
+.show {
+    display: block;
 }
 
 h1 {
@@ -135,7 +122,9 @@ span {
     font-weight: bold;
 }
 
-.button {
+.buttonF,
+.buttonL,
+.buttonC{
     margin-top: 10px;
     margin-bottom: 15px;
     width: 150px;
@@ -147,13 +136,13 @@ span {
     background: linear-gradient(#f90909, #f95d5d);
 }
 
-.button:hover {
+.buttonF:hover,
+.buttonL:hover,
+.buttonC:hover {
     background: linear-gradient(#f95d5d, #f90909);
 }
 
-.zakladkiF,
-.zakladkiL,
-.zakladkiC {
+.zakladki {
     display: flex;
     justify-content: center;
 }

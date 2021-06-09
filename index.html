@@ -10,149 +10,123 @@
 </head>
 <body>
     <div class="container">
-        <div class="calcF">
-            <div class="zakladkiF">
-                <button class="btn" name="submit">
-                    <strong>Индуктивность</strong>
-                </button>
-                <button class="btn" name="submit">
-                    <strong>Ёмкость</strong>
-                </button>
-                <button class="btn" name="submit">
-                    <strong>Частота</strong>
-                </button>
+        <div class="calc">
+            <div class="zakladki">
+                <button class="btn" name="submit">Частота</button>
+                <button class="btn" name="submit">Индуктивность</button>
+                <button class="btn" name="submit">Ёмкость</button>
             </div>
-            <h1>Калькулятор для расчёта частоты <br>колебаний контура</h1>
-            <form>
-                <div class="pole1">
-                    <label>Индуктивность колебательного контура</label>
-                    <input class="numL" type="text">
-                    <select class="edinizy L" name="edinizy">
-                        <option value="Гн" selected>Гн</option>
-                        <option value="мГн">мГн</option>
-                        <option value="мкГн">мкГн</option>
-                        <option value="нГн">нГн</option>
-                        <option value="пГн">пГн</option>
-                    </select>
-                </div>
-
-                <div class="pole2">
-                    <label>Ёмкость колебательного контура</label>
-                    <input class="numC" type="text">
-                    <select class="edinizy C" name="edinizy">
-                        <option value="Ф" selected>Ф</option>
-                        <option value="мФ">мФ</option>
-                        <option value="мкФ">мкФ</option>
-                        <option value="нФ">нФ</option>
-                        <option value="пФ">пФ</option>
-                    </select>
-                </div>
-                <div class="result">
-                    <div>
-                        <span>Результат расчёта: </span>
-                        <span class="return"><span class="resultEnter"></span></span>
+            <div class="calcF calculyator">
+                <h1>Калькулятор для расчёта частоты <br>колебаний контура</h1>
+                <form>
+                    <div class="pole1">
+                        <label>Индуктивность колебательного контура</label>
+                        <input class="numL" type="text">
+                        <select class="edinizy L" name="edinizy">
+                            <option value="Гн" selected>Гн</option>
+                            <option value="мГн">мГн</option>
+                            <option value="мкГн">мкГн</option>
+                            <option value="нГн">нГн</option>
+                            <option value="пГн">пГн</option>
+                        </select>
                     </div>
-                    <button class="button" name="submit">
-                        <strong>Вычислить</strong>
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="calcL">
-            <div class="zakladkiL">
-                <button class="btn" name="submit">
-                    <strong>Индуктивность</strong>
-                </button>
-                <button class="btn" name="submit">
-                    <strong>Ёмкость</strong>
-                </button>
-                <button class="btn" name="submit">
-                    <strong>Частота</strong>
-                </button>
+
+                    <div class="pole2">
+                        <label>Ёмкость колебательного контура</label>
+                        <input class="numC" type="text">
+                        <select class="edinizy C" name="edinizy">
+                            <option value="Ф" selected>Ф</option>
+                            <option value="мФ">мФ</option>
+                            <option value="мкФ">мкФ</option>
+                            <option value="нФ">нФ</option>
+                            <option value="пФ">пФ</option>
+                        </select>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <span>Результат расчёта: </span>
+                            <span class="return"><span class="resultEnterF"></span></span>
+                        </div>
+                        <button class="buttonF" name="submit">
+                            <strong>Вычислить</strong>
+                        </button>
+                    </div>
+                </form>
             </div>
-            <h1>Калькулятор для расчёта индуктивности <br>колебательного контура</h1>
-            <form>
-                <div class="pole1">
-                    <label>Частота колебательного контура</label>
-                    <input class="numF" type="text">
-                    <select class="edinizy F" name="edinizy">
-                        <option value="мГц">мГц</option>
-                        <option value="Гц" selected>Гц</option>
-                        <option value="кГц">кГц</option>
-                        <option value="МГц">МГц</option>
-                        <option value="ГГц">ГГц</option>
-                    </select>
-                </div>
-
-                <div class="pole2">
-                    <label>Ёмкость колебательного контура</label>
-                    <input class="numC" type="text">
-                    <select class="edinizy C" name="edinizy">
-                        <option value="Ф" selected>Ф</option>
-                        <option value="мФ">мФ</option>
-                        <option value="мкФ">мкФ</option>
-                        <option value="нФ">нФ</option>
-                        <option value="пФ">пФ</option>
-                    </select>
-                </div>
-                <div class="result">
-                    <div>
-                        <span>Результат расчёта: </span>
-                        <span class="return"><span class="resultEnter"></span></span>
+            <div class="calcL calculyator">
+                <h1>Калькулятор для расчёта индуктивности <br>колебательного контура</h1>
+                <form>
+                    <div class="pole1">
+                        <label>Частота колебательного контура</label>
+                        <input class="numF" type="text">
+                        <select class="edinizy F" name="edinizy">
+                            <option value="мГц">мГц</option>
+                            <option value="Гц" selected>Гц</option>
+                            <option value="кГц">кГц</option>
+                            <option value="МГц">МГц</option>
+                            <option value="ГГц">ГГц</option>
+                        </select>
                     </div>
-                    <button class="button" name="submit">
-                        <strong>Вычислить</strong>
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="calcC">
-            <div class="zakladkiC">
-                <button class="btn" name="submit">
-                    <strong>Индуктивность</strong>
-                </button>
-                <button class="btn" name="submit">
-                    <strong>Ёмкость</strong>
-                </button>
-                <button class="btn" name="submit">
-                    <strong>Частота</strong>
-                </button>
+
+                    <div class="pole2">
+                        <label>Ёмкость колебательного контура</label>
+                        <input class="numbC" type="text">
+                        <select class="edinizy Cap" name="edinizy">
+                            <option value="Ф" selected>Ф</option>
+                            <option value="мФ">мФ</option>
+                            <option value="мкФ">мкФ</option>
+                            <option value="нФ">нФ</option>
+                            <option value="пФ">пФ</option>
+                        </select>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <span>Результат расчёта: </span>
+                            <span class="return"><span class="resultEnterL"></span></span>
+                        </div>
+                        <button class="buttonL" name="submit">
+                            <strong>Вычислить</strong>
+                        </button>
+                    </div>
+                </form>
             </div>
-            <h1>Калькулятор для расчёта ёмкости <br>колебательного контура</h1>
-            <form>
-                <div class="pole1">
-                    <label>Частота колебательного контура</label>
-                    <input class="numF" type="text">
-                    <select class="edinizy F" name="edinizy">
-                        <option value="мГц">мГц</option>
-                        <option value="Гц" selected>Гц</option>
-                        <option value="кГц">кГц</option>
-                        <option value="МГц">МГц</option>
-                        <option value="ГГц">ГГц</option>
-                    </select>
-                </div>
-
-                <div class="pole2">
-                    <label>Индуктивность колебательного контура</label>
-                    <input class="numL" type="text">
-                    <select class="edinizy L" name="edinizy">
-                        <option value="Гн" selected>Гн</option>
-                        <option value="мГн">мГн</option>
-                        <option value="мкГн">мкГн</option>
-                        <option value="нГн">нГн</option>
-                        <option value="пГн">пГн</option>
-                    </select>
-                </div>
-                <div class="result">
-                    <div>
-                        <span>Результат расчёта: </span>
-                        <span class="return"><span class="resultEnter"></span></span>
+            <div class="calcC calculyator">
+                <h1>Калькулятор для расчёта ёмкости <br>колебательного контура</h1>
+                <form>
+                    <div class="pole1">
+                        <label>Частота колебательного контура</label>
+                        <input class="numbF" type="text">
+                        <select class="edinizy Fr" name="edinizy">
+                            <option value="мГц">мГц</option>
+                            <option value="Гц" selected>Гц</option>
+                            <option value="кГц">кГц</option>
+                            <option value="МГц">МГц</option>
+                            <option value="ГГц">ГГц</option>
+                        </select>
                     </div>
-                    <button class="button" name="submit">
-                        <strong>Вычислить</strong>
-                    </button>
-                </div>
-            </form>
+
+                    <div class="pole2">
+                        <label>Индуктивность колебательного контура</label>
+                        <input class="numbL" type="text">
+                        <select class="edinizy Lt" name="edinizy">
+                            <option value="Гн" selected>Гн</option>
+                            <option value="мГн">мГн</option>
+                            <option value="мкГн">мкГн</option>
+                            <option value="нГн">нГн</option>
+                            <option value="пГн">пГн</option>
+                        </select>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <span>Результат расчёта: </span>
+                            <span class="return"><span class="resultEnterC"></span></span>
+                        </div>
+                        <button class="buttonC" name="submit">
+                            <strong>Вычислить</strong>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

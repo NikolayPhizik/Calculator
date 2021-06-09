@@ -1,159 +1,344 @@
 "use strict";
 
-let obj = {
-    "пГн": 0.000000000001,
-    "нГн": 0.000000001,
-    "мкГн": 0.000001,
-    "мГн": 0.001,
-    "Гн": 1,
-    "пФ": 0.000000000001,
-    "нФ": 0.000000001,
-    "мкФ": 0.000001,
-    "мФ": 0.001,
-    "Ф": 1,
-    0.001: "мГц",
-    1: "Гц",
-    1000: "кГц",
-    1000000: "МГц",
-    1000000000: "ГГц",
-    units: function(key) {
-        return obj[key];
-    }
-};
-
-let numL = document.querySelector(".numL");
-let numC = document.querySelector(".numC");
-let edinizyL = document.querySelector(".L");
-let edinizyC = document.querySelector(".C");
-let resultat = document.querySelector(".resultEnter");
-let number;
-let numberL;
-let numberC;
-let intermediateValue;
-let result;
-let coefficientL;
-let coefficientC;
-let coefficientF;
 let btn = document.querySelectorAll(".btn");
+let zakladki = document.querySelector(".zakladki");
+let calculyator = document.querySelectorAll(".calculyator");
 let calcF = document.querySelector(".calcF");
 let calcL = document.querySelector(".calcL");
 let calcC = document.querySelector(".calcC");
-let button = document.querySelector(".button");
+let buttonF = document.querySelector(".buttonF");
+let buttonL = document.querySelector(".buttonL");
+let buttonC = document.querySelector(".buttonC");
 
-btn[0].addEventListener("click", (evt) => {
-    evt.preventDefault();
-    calcF.classList.remove("z-index");
-    calcC.classList.remove("z-index");
-    calcL.classList.add("z-index");
+function hideCalculyator() {
+    calculyator.forEach(item => {
+        item.classList.add("hide");
+        item.classList.remove("show");
+    });
+}
+
+function showCalculyator(i = 0) {
+    calculyator[i].classList.add("show");
+    calculyator[i].classList.remove("hide");
+}
+
+hideCalculyator();
+showCalculyator();
+
+zakladki.addEventListener("click", (event) => {
+    if (event.target && event.target.tagName == "BUTTON") {
+        btn.forEach((item, i) => {
+            if (event.target == item) {
+                hideCalculyator();
+                showCalculyator(i);
+            }
+        });
+    }
 });
 
-btn[1].addEventListener("click", (evt) => {
+buttonF.addEventListener("click", (evt) => {
     evt.preventDefault();
-    calcF.classList.remove("z-index");
-    calcL.classList.remove("z-index");
-    calcC.classList.add("z-index");
+    calcFrequency();
 });
 
-btn[2].addEventListener("click", (evt) => {
+buttonL.addEventListener("click", (evt) => {
     evt.preventDefault();
-    calcC.classList.remove("z-index");
-    calcL.classList.remove("z-index");
-    calcF.classList.add("z-index");
+    calcInductance();
 });
 
-btn[3].addEventListener("click", (evt) => {
+buttonC.addEventListener("click", (evt) => {
     evt.preventDefault();
-    calcF.classList.remove("z-index");
-    calcC.classList.remove("z-index");
-    calcL.classList.add("z-index");
+    calcСapacity();
 });
 
-btn[4].addEventListener("click", (evt) => {
-    evt.preventDefault();
-    calcF.classList.remove("z-index");
-    calcL.classList.remove("z-index");
-    calcC.classList.add("z-index");
-});
-
-btn[5].addEventListener("click", (evt) => {
-    evt.preventDefault();
-    calcC.classList.remove("z-index");
-    calcL.classList.remove("z-index");
-    calcF.classList.add("z-index");
-});
-
-btn[6].addEventListener("click", (evt) => {
-    evt.preventDefault();
-    calcF.classList.remove("z-index");
-    calcC.classList.remove("z-index");
-    calcL.classList.add("z-index");
-});
-
-btn[7].addEventListener("click", (evt) => {
-    evt.preventDefault();
-    calcF.classList.remove("z-index");
-    calcL.classList.remove("z-index");
-    calcC.classList.add("z-index");
-});
-
-btn[8].addEventListener("click", (evt) => {
-    evt.preventDefault();
-    calcC.classList.remove("z-index");
-    calcL.classList.remove("z-index");
-    calcF.classList.add("z-index");
-});
-
-
-button.addEventListener("click", (evt) => {
-    evt.preventDefault();
-    number = [+numL.value, +numC.value];
-    numValidator(number);
-});
-
-function numValidator(number) {
-    coefficientL = obj.units(edinizyL.value);
-    coefficientC = obj.units(edinizyC.value);
-    
-    if (number[0] !== "" && isNaN(number[0]) === false){
-        numberL = number[0];
-        if (number[1] !== "" && isNaN(number[1]) === false) {
-            numberC = number[1];
-            return calc(numberL, numberC, coefficientL, coefficientC);
+function calcFrequency() {
+    let obj = {
+        "пГн": 0.000000000001,
+        "нГн": 0.000000001,
+        "мкГн": 0.000001,
+        "мГн": 0.001,
+        "Гн": 1,
+        "пФ": 0.000000000001,
+        "нФ": 0.000000001,
+        "мкФ": 0.000001,
+        "мФ": 0.001,
+        "Ф": 1,
+        0.001: "мГц",
+        1: "Гц",
+        1000: "кГц",
+        1000000: "МГц",
+        1000000000: "ГГц",
+        units: function(key) {
+            return obj[key];
         }
+    };
+
+    let numL = document.querySelector(".numL");
+    let numC = document.querySelector(".numC");
+    let edinizyL = document.querySelector(".L");
+    let edinizyC = document.querySelector(".C");
+    let resultatF = document.querySelector(".resultEnterF");
+    let number;
+    let numberL;
+    let numberC;
+    let intermediateValue;
+    let result;
+    let coefficientL;
+    let coefficientC;
+
+    number = [+numL.value, +numC.value];
+    numValidatorF(number);
+    function numValidatorF(number) {
+        coefficientL = obj.units(edinizyL.value);
+        coefficientC = obj.units(edinizyC.value);
+        
+        if (number[0] !== "" && isNaN(number[0]) === false){
+            numberL = number[0];
+            if (number[1] !== "" && isNaN(number[1]) === false) {
+                numberC = number[1];
+                return calc(numberL, numberC, coefficientL, coefficientC);
+            }
+        }
+        result = "Не правильно введены данные!";
+        resultEnterF(result);
     }
-    result = "Не правильно введены данные!";
-    resultEnter(result);
-}
 
-function calc(numberL, numberC, coefficientL, coefficientC) {
-    intermediateValue = 1 / (2 * Math.PI * Math.sqrt(numberL * coefficientL * numberC * coefficientC));
-    return processingTheResult(intermediateValue);
-}
-
-
-function processingTheResult(intermediateValue) {
-    if (intermediateValue >= 0.001 && intermediateValue < 1) {
-        intermediateValue = Math.round(intermediateValue * 1000 * 100) / 100;
-        result = `${intermediateValue} ${obj.units(0.001)}`;
-
-    } else if (intermediateValue >= 1 && intermediateValue < 1000) {
-        result = `${Math.round(intermediateValue * 100) / 100} ${obj.units(1)}`;
-
-    } else if (intermediateValue >= 1000 && intermediateValue < 1000000) {
-        intermediateValue = Math.round(intermediateValue / 1000 * 100) / 100;
-        result = `${intermediateValue} ${obj.units(1000)}`;
-
-    } else if (intermediateValue >= 1000000 && intermediateValue < 1000000000) {
-        intermediateValue = Math.round(intermediateValue / 1000000 * 100) / 100;
-        result = `${intermediateValue} ${obj.units(1000000)}`;
-
-    } else if (intermediateValue >= 1000000000 && intermediateValue < 1000000000000) {
-        intermediateValue = Math.round(intermediateValue / 1000000000 * 100) / 100;
-        result = `${intermediateValue} ${obj.units(1000000000)}`;
+    function calc(numberL, numberC, coefficientL, coefficientC) {
+        intermediateValue = 1 / (2 * Math.PI * Math.sqrt(numberL * coefficientL * numberC * coefficientC));
+        return processingTheResultF(intermediateValue);
     }
-    resultEnter(result);
+
+
+    function processingTheResultF(intermediateValue) {
+        if (intermediateValue >= 0.001 && intermediateValue < 1) {
+            intermediateValue = Math.round(intermediateValue * 1000 * 100) / 100;
+            result = `${intermediateValue} ${obj.units(0.001)}`;
+
+        } else if (intermediateValue >= 1 && intermediateValue < 1000) {
+            result = `${Math.round(intermediateValue * 100) / 100} ${obj.units(1)}`;
+
+        } else if (intermediateValue >= 1000 && intermediateValue < 1000000) {
+            intermediateValue = Math.round(intermediateValue / 1000 * 100) / 100;
+            result = `${intermediateValue} ${obj.units(1000)}`;
+
+        } else if (intermediateValue >= 1000000 && intermediateValue < 1000000000) {
+            intermediateValue = Math.round(intermediateValue / 1000000 * 100) / 100;
+            result = `${intermediateValue} ${obj.units(1000000)}`;
+
+        } else if (intermediateValue >= 1000000000 && intermediateValue < 1000000000000) {
+            intermediateValue = Math.round(intermediateValue / 1000000000 * 100) / 100;
+            result = `${intermediateValue} ${obj.units(1000000000)}`;
+        }
+        resultEnterF(result);
+    }
+
+    function resultEnterF(result) {
+        resultatF.textContent = result;
+    }
 }
 
-function resultEnter(result) {
-    resultat.textContent = `${result}`;
+function calcInductance() {
+    let objL = {
+        "пФ": 0.000000000001,
+        "нФ": 0.000000001,
+        "мкФ": 0.000001,
+        "мФ": 0.001,
+        "Ф": 1,
+        "мГц": 0.001,
+        "Гц": 1,
+        "кГц": 1000,
+        "МГц": 1000000,
+        "ГГц": 1000000000,
+        0.000000000000001: "фГн",
+        0.000000000001: "пГн",
+        0.000000001: "нГн",
+        0.000001: "мкГн",
+        0.001: "мГн",
+        1: "Гн",
+        1000: "кГн",
+        units: function(key) {
+            return objL[key];
+        }
+    };
+
+    let numF = document.querySelector(".numF");
+    let numbC = document.querySelector(".numbC");
+    let edinizyF = document.querySelector(".F");
+    let edinizyC = document.querySelector(".Cap");
+    let resultatL = document.querySelector(".resultEnterL");
+    let numb;
+    let numberF;
+    let numbeC;
+    let intermediateValueL;
+    let res;
+    let coeffC;
+    let coeffF;
+
+    numb = [+numF.value, +numbC.value];
+    numValidatorL(numb);
+    function numValidatorL(numb) {
+        coeffF = objL.units(edinizyF.value);
+        coeffC = objL.units(edinizyC.value);
+
+        if (coeffF == 1000000 && coeffC > 0.000001) {
+            res = "Используйте единицы мкФ и ниже!";
+            return resultEnterL(res);
+        }
+
+        if (coeffF == 1000000000 && coeffC > 0.000000000001) {
+            res = "Используйте единицы пФ!";
+            return resultEnterL(res);
+        }
+
+        if (numb[0] !== "" && isNaN(numb[0]) === false){
+            numberF = numb[0];
+            if (numb[1] !== "" && isNaN(numb[1]) === false) {
+                numbeC = numb[1];
+                return calculyatorL(numberF, numbeC, coeffF, coeffC);
+            }
+        }
+        res = "Не правильно введены данные!";
+        resultEnterL(res);
+    }
+
+    function calculyatorL(numberF, numbeC, coeffF, coeffC) {
+        let d = numberF * coeffF;
+        intermediateValueL = 1 / (4 * Math.pow(Math.PI, 2) * Math.pow(d, 2) * numbeC * coeffC);
+        return processingTheResultL(intermediateValueL);
+    }
+
+    function processingTheResultL(intermediateValueL) {
+
+        if(intermediateValueL < 0.000000001) {
+            intermediateValueL = Math.round(intermediateValueL * 1000000000000 * 100) / 100;
+            res = `${intermediateValueL} ${objL.units(0.000000000001)}`;
+
+        } else if (intermediateValueL >= 0.000000001 && intermediateValueL < 0.000001) {
+            res = `${Math.round(intermediateValueL * 1000000000 * 100) / 100} ${objL.units(0.000000001)}`;
+
+        } else if (intermediateValueL >= 0.000001 && intermediateValueL < 0.001) {
+            intermediateValueL = Math.round(intermediateValueL * 1000000 * 100) / 100;
+            res = `${intermediateValueL} ${objL.units(0.000001)}`;
+
+        } else if (intermediateValueL >= 0.001 && intermediateValueL < 1) {
+            intermediateValueL = Math.round(intermediateValueL * 1000 * 100) / 100;
+            res = `${intermediateValueL} ${objL.units(0.001)}`;
+
+        } else if (intermediateValueL >= 1 && intermediateValueL < 1000) {
+            intermediateValueL = Math.round(intermediateValueL * 100) / 100;
+            res = `${intermediateValueL} ${objL.units(1)}`;
+
+        } else if (intermediateValueL >= 1000 && intermediateValueL < 1000000) {
+            intermediateValueL = Math.round(intermediateValueL / 1000 * 100) / 100;
+            res = `${intermediateValueL} ${objL.units(1000)}`;
+        }
+        resultEnterL(res);
+    }
+
+    function resultEnterL(res) {
+        resultatL.textContent = res;
+    }
+}
+
+function calcСapacity() {
+    let objC = {
+        "пГн": 0.000000000001,
+        "нГн": 0.000000001,
+        "мкГн": 0.000001,
+        "мГн": 0.001,
+        "Гн": 1,
+        "мГц": 0.001,
+        "Гц": 1,
+        "кГц": 1000,
+        "МГц": 1000000,
+        "ГГц": 1000000000,
+        0.000000000001: "пФ",
+        0.000000001: "нФ",
+        0.000001: "мкФ",
+        0.001: "мФ",
+        1: "Ф",
+        1000: "кФ",
+        units: function(key) {
+            return objC[key];
+        }
+    };
+
+    let numbF = document.querySelector(".numbF");
+    let numbL = document.querySelector(".numbL");
+    let edinicyF = document.querySelector(".Fr");
+    let edinicyL = document.querySelector(".Lt");
+    let resultatC = document.querySelector(".resultEnterC");
+    let numbe;
+    let numbeF;
+    let numbeL;
+    let intermediateValueC;
+    let resul;
+    let coefL;
+    let coefF;
+
+    numbe = [+numbF.value, +numbL.value];
+    numValidatorC(numbe);
+    function numValidatorC(numbe) {
+        coefL = objC.units(edinicyL.value);
+        coefF = objC.units(edinicyF.value);
+
+        if (coefF == 1000000 && coefL > 0.000001) {
+            resul = "Используйте единицы мкГн и ниже!";
+            return resultEnterC(resul);
+        }
+
+        if (coefF == 1000000000 && coefL > 0.000000000001) {
+            resul = "Используйте единицы пГн!";
+            return resultEnterC(resul);
+        }
+        
+        if (numbe[0] !== "" && isNaN(numbe[0]) === false){
+            numbeF = numbe[0];
+            if (numbe[1] !== "" && isNaN(numbe[1]) === false) {
+                numbeL = numbe[1];
+                return calculyatorC(numbeF, numbeL, coefF, coefL);
+            }
+        }
+        resul = "Не правильно введены данные!";
+        resultEnterC(resul);
+    }
+
+    function calculyatorC(numbeF, numbeL, coefF, coefL) {
+        let s = numbeF * coefF;
+        intermediateValueC = 1 / (4 * Math.pow(Math.PI, 2) * Math.pow(s, 2) * numbeL * coefL);
+        return processingTheResultC(intermediateValueC);
+    }
+
+
+    function processingTheResultC(intermediateValueC) {
+        if (intermediateValueC < 0.000000001) {
+            intermediateValueC = Math.round(intermediateValueC * 100000000000000) / 100;
+            resul = `${intermediateValueC} ${objC.units(0.000000000001)}`;
+
+        } else if (intermediateValueC >= 0.000000001 && intermediateValueC < 0.000001) {
+            intermediateValueC = Math.round(intermediateValueC * 100000000000) / 100;
+            resul = `${intermediateValueC} ${objC.units(0.000000001)}`;
+
+        } else if (intermediateValueC >= 0.000001 && intermediateValueC < 0.001) {
+            intermediateValueC = Math.round(intermediateValueC * 100000000) / 100;
+            resul = `${intermediateValueC} ${objC.units(0.000001)}`;
+
+        } else if (intermediateValueC >= 0.001 && intermediateValueC < 1) {
+            intermediateValueC = Math.round(intermediateValueC * 100000) / 100;
+            resul = `${intermediateValueC} ${objC.units(0.001)}`;
+
+        } else if (intermediateValueC >= 1 && intermediateValueC < 1000) {
+            intermediateValueC = Math.round(intermediateValueC * 100) / 100;
+            resul = `${intermediateValueC} ${objC.units(1)}`;
+
+        } else if (intermediateValueC >= 1000 && intermediateValueC < 1000) {
+            intermediateValueC = Math.round(intermediateValueC / 1000 * 100) / 100;
+            resul = `${intermediateValueC} ${objC.units(1000)}`;
+        }
+        resultEnterC(resul);
+    }
+
+    function resultEnterC(resul) {
+        resultatC.textContent = resul;
+    }
 }
