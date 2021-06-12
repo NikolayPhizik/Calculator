@@ -126,7 +126,7 @@ function calcFrequency() {
         return processingTheResultF(intermediateValue);
     }
 
-    function processingTheResultF(intermediateValueF) {
+    function processingTheResultF(intermediateValue) {
 
         let arr = ["mHz", "Hz", "kHz", "MHz", "GHz"],
             a = 0.001,
@@ -134,8 +134,8 @@ function calcFrequency() {
             c = 100000;
     
         for (let i = 0; i <= 5; i++) {
-            if(intermediateValueF >= a && intermediateValueF < b) {
-                result = `${Math.round(intermediateValueF * c) / 100} ${obj.units(arr[i])}`;
+            if(intermediateValue >= a && intermediateValue < b) {
+                result = `${Math.round(intermediateValue * c) / 100} ${obj.units(arr[i])}`;
                 return resultEnterF(result);
             }
             a = a * 1000;
