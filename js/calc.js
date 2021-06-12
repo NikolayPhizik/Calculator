@@ -1,5 +1,43 @@
 "use strict";
 
+let obj = {
+    "пГн": 0.000000000001,
+    "нГн": 0.000000001,
+    "мкГн": 0.000001,
+    "мГн": 0.001,
+    "Гн": 1,
+    "пФ": 0.000000000001,
+    "нФ": 0.000000001,
+    "мкФ": 0.000001,
+    "мФ": 0.001,
+    "Ф": 1,
+    "мГц": 0.001,
+    "Гц": 1,
+    "кГц": 1000,
+    "МГц": 1000000,
+    "ГГц": 1000000000,
+    "pH": "пГн",
+    "nH": "нГн",
+    "mkH": "мкГн",
+    "mH": "мГн",
+    "H": "Гн",
+    "kH": "кГн",
+    "mHz": "мГц",
+    "Hz": "Гц",
+    "kHz": "кГц",
+    "MHz": "МГц",
+    "GHz": "ГГц",
+    "pF": "пФ",
+    "nF": "нФ",
+    "mkF": "мкФ",
+    "mF": "мФ",
+    "F": "Ф",
+    "kF": "кФ",
+    units: function(key) {
+        return obj[key];
+    }
+};
+
 let btn = document.querySelectorAll(".btn");
 let zakladki = document.querySelector(".zakladki");
 let calculyator = document.querySelectorAll(".calculyator");
@@ -52,26 +90,6 @@ buttonC.addEventListener("click", (evt) => {
 });
 
 function calcFrequency() {
-    let obj = {
-        "пГн": 0.000000000001,
-        "нГн": 0.000000001,
-        "мкГн": 0.000001,
-        "мГн": 0.001,
-        "Гн": 1,
-        "пФ": 0.000000000001,
-        "нФ": 0.000000001,
-        "мкФ": 0.000001,
-        "мФ": 0.001,
-        "Ф": 1,
-        0.001: "мГц",
-        1: "Гц",
-        1000: "кГц",
-        1000000: "МГц",
-        1000000000: "ГГц",
-        units: function(key) {
-            return obj[key];
-        }
-    };
 
     let numL = document.querySelector(".numL");
     let numC = document.querySelector(".numC");
@@ -108,28 +126,22 @@ function calcFrequency() {
         return processingTheResultF(intermediateValue);
     }
 
+    function processingTheResultF(intermediateValueF) {
 
-    function processingTheResultF(intermediateValue) {
-        if (intermediateValue >= 0.001 && intermediateValue < 1) {
-            intermediateValue = Math.round(intermediateValue * 1000 * 100) / 100;
-            result = `${intermediateValue} ${obj.units(0.001)}`;
-
-        } else if (intermediateValue >= 1 && intermediateValue < 1000) {
-            result = `${Math.round(intermediateValue * 100) / 100} ${obj.units(1)}`;
-
-        } else if (intermediateValue >= 1000 && intermediateValue < 1000000) {
-            intermediateValue = Math.round(intermediateValue / 1000 * 100) / 100;
-            result = `${intermediateValue} ${obj.units(1000)}`;
-
-        } else if (intermediateValue >= 1000000 && intermediateValue < 1000000000) {
-            intermediateValue = Math.round(intermediateValue / 1000000 * 100) / 100;
-            result = `${intermediateValue} ${obj.units(1000000)}`;
-
-        } else if (intermediateValue >= 1000000000 && intermediateValue < 1000000000000) {
-            intermediateValue = Math.round(intermediateValue / 1000000000 * 100) / 100;
-            result = `${intermediateValue} ${obj.units(1000000000)}`;
+        let arr = ["mHz", "Hz", "kHz", "MHz", "GHz"],
+            a = 0.001,
+            b = 1,
+            c = 100000;
+    
+        for (let i = 0; i <= 5; i++) {
+            if(intermediateValueF >= a && intermediateValueF < b) {
+                result = `${Math.round(intermediateValueF * c) / 100} ${obj.units(arr[i])}`;
+                return resultEnterF(result);
+            }
+            a = a * 1000;
+            b = b * 1000;
+            c = c / 1000;
         }
-        resultEnterF(result);
     }
 
     function resultEnterF(result) {
@@ -138,28 +150,6 @@ function calcFrequency() {
 }
 
 function calcInductance() {
-    let objL = {
-        "пФ": 0.000000000001,
-        "нФ": 0.000000001,
-        "мкФ": 0.000001,
-        "мФ": 0.001,
-        "Ф": 1,
-        "мГц": 0.001,
-        "Гц": 1,
-        "кГц": 1000,
-        "МГц": 1000000,
-        "ГГц": 1000000000,
-        0.000000000000001: "фГн",
-        0.000000000001: "пГн",
-        0.000000001: "нГн",
-        0.000001: "мкГн",
-        0.001: "мГн",
-        1: "Гн",
-        1000: "кГн",
-        units: function(key) {
-            return objL[key];
-        }
-    };
 
     let numF = document.querySelector(".numF");
     let numbC = document.querySelector(".numbC");
@@ -177,8 +167,8 @@ function calcInductance() {
     numb = [+numF.value, +numbC.value];
     numValidatorL(numb);
     function numValidatorL(numb) {
-        coeffF = objL.units(edinizyF.value);
-        coeffC = objL.units(edinizyC.value);
+        coeffF = obj.units(edinizyF.value);
+        coeffC = obj.units(edinizyC.value);
 
         if (coeffF == 1000000 && coeffC > 0.000001) {
             res = "Используйте единицы мкФ и ниже!";
@@ -209,30 +199,21 @@ function calcInductance() {
 
     function processingTheResultL(intermediateValueL) {
 
-        if(intermediateValueL < 0.000000001) {
-            intermediateValueL = Math.round(intermediateValueL * 1000000000000 * 100) / 100;
-            res = `${intermediateValueL} ${objL.units(0.000000000001)}`;
+        let arr = ["pH", "nH", "mkH", "mH", "H", "kH"],
+            a = 0.000000000001,
+            b = 0.000000001,
+            c = 100000000000000;
 
-        } else if (intermediateValueL >= 0.000000001 && intermediateValueL < 0.000001) {
-            res = `${Math.round(intermediateValueL * 1000000000 * 100) / 100} ${objL.units(0.000000001)}`;
-
-        } else if (intermediateValueL >= 0.000001 && intermediateValueL < 0.001) {
-            intermediateValueL = Math.round(intermediateValueL * 1000000 * 100) / 100;
-            res = `${intermediateValueL} ${objL.units(0.000001)}`;
-
-        } else if (intermediateValueL >= 0.001 && intermediateValueL < 1) {
-            intermediateValueL = Math.round(intermediateValueL * 1000 * 100) / 100;
-            res = `${intermediateValueL} ${objL.units(0.001)}`;
-
-        } else if (intermediateValueL >= 1 && intermediateValueL < 1000) {
-            intermediateValueL = Math.round(intermediateValueL * 100) / 100;
-            res = `${intermediateValueL} ${objL.units(1)}`;
-
-        } else if (intermediateValueL >= 1000 && intermediateValueL < 1000000) {
-            intermediateValueL = Math.round(intermediateValueL / 1000 * 100) / 100;
-            res = `${intermediateValueL} ${objL.units(1000)}`;
+        for (let i = 0; i <= 5; i++) {
+            if(intermediateValueL >= a && intermediateValueL < b) {
+                res = `${Math.round(intermediateValueL * c) / 100} ${obj.units(arr[i])}`;
+                return resultEnterL(res);
+            }
+            a = a * 1000;
+            b = b * 1000;
+            c = c / 1000;
         }
-        resultEnterL(res);
+
     }
 
     function resultEnterL(res) {
@@ -241,27 +222,6 @@ function calcInductance() {
 }
 
 function calcСapacity() {
-    let objC = {
-        "пГн": 0.000000000001,
-        "нГн": 0.000000001,
-        "мкГн": 0.000001,
-        "мГн": 0.001,
-        "Гн": 1,
-        "мГц": 0.001,
-        "Гц": 1,
-        "кГц": 1000,
-        "МГц": 1000000,
-        "ГГц": 1000000000,
-        0.000000000001: "пФ",
-        0.000000001: "нФ",
-        0.000001: "мкФ",
-        0.001: "мФ",
-        1: "Ф",
-        1000: "кФ",
-        units: function(key) {
-            return objC[key];
-        }
-    };
 
     let numbF = document.querySelector(".numbF");
     let numbL = document.querySelector(".numbL");
@@ -279,8 +239,8 @@ function calcСapacity() {
     numbe = [+numbF.value, +numbL.value];
     numValidatorC(numbe);
     function numValidatorC(numbe) {
-        coefL = objC.units(edinicyL.value);
-        coefF = objC.units(edinicyF.value);
+        coefL = obj.units(edinicyL.value);
+        coefF = obj.units(edinicyF.value);
 
         if (coefF == 1000000 && coefL > 0.000001) {
             resul = "Используйте единицы мкГн и ниже!";
@@ -309,33 +269,23 @@ function calcСapacity() {
         return processingTheResultC(intermediateValueC);
     }
 
-
     function processingTheResultC(intermediateValueC) {
-        if (intermediateValueC < 0.000000001) {
-            intermediateValueC = Math.round(intermediateValueC * 100000000000000) / 100;
-            resul = `${intermediateValueC} ${objC.units(0.000000000001)}`;
 
-        } else if (intermediateValueC >= 0.000000001 && intermediateValueC < 0.000001) {
-            intermediateValueC = Math.round(intermediateValueC * 100000000000) / 100;
-            resul = `${intermediateValueC} ${objC.units(0.000000001)}`;
-
-        } else if (intermediateValueC >= 0.000001 && intermediateValueC < 0.001) {
-            intermediateValueC = Math.round(intermediateValueC * 100000000) / 100;
-            resul = `${intermediateValueC} ${objC.units(0.000001)}`;
-
-        } else if (intermediateValueC >= 0.001 && intermediateValueC < 1) {
-            intermediateValueC = Math.round(intermediateValueC * 100000) / 100;
-            resul = `${intermediateValueC} ${objC.units(0.001)}`;
-
-        } else if (intermediateValueC >= 1 && intermediateValueC < 1000) {
-            intermediateValueC = Math.round(intermediateValueC * 100) / 100;
-            resul = `${intermediateValueC} ${objC.units(1)}`;
-
-        } else if (intermediateValueC >= 1000 && intermediateValueC < 1000) {
-            intermediateValueC = Math.round(intermediateValueC / 1000 * 100) / 100;
-            resul = `${intermediateValueC} ${objC.units(1000)}`;
+        let arr = ["pF", "nF", "mkF", "mF", "F", "kF"],
+            a = 0.000000000001,
+            b = 0.000000001,
+            c = 100000000000000;
+    
+        for (let i = 0; i <= 5; i++) {
+            if(intermediateValueC >= a && intermediateValueC < b) {
+                resul = `${Math.round(intermediateValueC * c) / 100} ${obj.units(arr[i])}`;
+                return resultEnterC(resul);
+            }
+            a = a * 1000;
+            b = b * 1000;
+            c = c / 1000;
         }
-        resultEnterC(resul);
+    
     }
 
     function resultEnterC(resul) {
