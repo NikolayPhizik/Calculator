@@ -63,105 +63,89 @@ let obj = {
     units: function(key) {
         return obj[key];
     },
-};
-
-function start(j) {
-    number = [+num1[j].value, +num2[j].value];
-    coefficient1 = obj.units(edinizy1[j].value);
-    coefficient2 = obj.units(edinizy2[j].value);
-    return numValidator(number, coefficient1, coefficient2, j);
-}
-
-function numValidator(number, coefficient1, coefficient2, j) {
+    start: function(j) {
+        number = [+num1[j].value, +num2[j].value];
+        coefficient1 = this.units(edinizy1[j].value);
+        coefficient2 = this.units(edinizy2[j].value);
+        return this.numValidator(number, coefficient1, coefficient2, j);
+    },
+    numValidator: function(number, coefficient1, coefficient2, j) {
+        if (j === 1) {
+            if (coefficient1 == 1000000 && coefficient2 > 0.000001) {
+                result = "Используйте единицы мкФ и ниже!";
+                return this.resultEnter(result, j);
+            }
     
-    if (j === 1) {
-        if (coefficient1 == 1000000 && coefficient2 > 0.000001) {
-            result = "Используйте единицы мкФ и ниже!";
-            return resultEnter(result, j);
+            if (coefficient1 == 1000000000 && coefficient2 > 0.000000000001) {
+                result = "Используйте единицы пФ!";
+                return this.resultEnter(result, j);
+            }
+        } else if (j === 2) {
+            if (coefficient1 == 1000000 && coefficient2 > 0.000001) {
+                result = "Используйте единицы мкГн и ниже!";
+                return this.resultEnter(result, j);
+            }
+    
+            if (coefficient1 == 1000000000 && coefficient2 > 0.000000000001) {
+                result = "Используйте единицы пГн!";
+                return this.resultEnter(result, j);
+            }
         }
-
-        if (coefficient1 == 1000000000 && coefficient2 > 0.000000000001) {
-            result = "Используйте единицы пФ!";
-            return resultEnter(result, j);
+    
+        if (number[0] !== "" && isNaN(number[0]) === false){
+            value1 = number[0];
+            if (number[1] !== "" && isNaN(number[1]) === false) {
+                value2 = number[1];
+                return this.calc(value1, value2, coefficient1, coefficient2, j);
+            }
         }
-    } else if (j === 2) {
-        if (coefficient1 == 1000000 && coefficient2 > 0.000001) {
-            result = "Используйте единицы мкГн и ниже!";
-            return resultEnter(result, j);
+        result = "Не правильно введены данные!";
+        this.resultEnter(result, j);
+    },
+    calc: function(value1, value2, coefficient1, coefficient2, j) {
+        if (j === 0) {
+            intermediateValue = 1 / (2 * Math.PI * Math.sqrt(value1 * coefficient1 * value2 * coefficient2));
+        } else if (j === 1) {
+            let d = value1 * coefficient1;
+            intermediateValue = 1 / (4 * Math.pow(Math.PI, 2) * Math.pow(d, 2) * value2 * coefficient2);
+        } else if (j === 2) {
+            let s = value1 * coefficient1;
+            intermediateValue = 1 / (4 * Math.pow(Math.PI, 2) * Math.pow(s, 2) * value2 * coefficient2);
         }
-
-        if (coefficient1 == 1000000000 && coefficient2 > 0.000000000001) {
-            result = "Используйте единицы пГн!";
-            return resultEnter(result, j);
-        }
-    }
-
-    if (number[0] !== "" && isNaN(number[0]) === false){
-        value1 = number[0];
-        if (number[1] !== "" && isNaN(number[1]) === false) {
-            value2 = number[1];
-            if (j === 0) {
-                return calcFrequency(value1, value2, coefficient1, coefficient2, j);
-            } else if (j === 1) {
-                return calcinductance(value1, value2, coefficient1, coefficient2, j);
-            } else if (j === 2) {
-                return calcCapacity(value1, value2, coefficient1, coefficient2, j);
-            } 
-        }
-    }
-    result = "Не правильно введены данные!";
-    resultEnter(result, j);
-}
-
-function calcFrequency(value1, value2, coefficient1, coefficient2, j) {
-    intermediateValue = 1 / (2 * Math.PI * Math.sqrt(value1 * coefficient1 * value2 * coefficient2));
-    return processingTheResult(intermediateValue, j);
-}
-
-function calcinductance(value1, value2, coefficient1, coefficient2, j) {
-    let d = value1 * coefficient1;
-    intermediateValue = 1 / (4 * Math.pow(Math.PI, 2) * Math.pow(d, 2) * value2 * coefficient2);
-    return processingTheResult(intermediateValue, j);
-}
-
-function calcCapacity(value1, value2, coefficient1, coefficient2, j) {
-    let s = value1 * coefficient1;
-    intermediateValue = 1 / (4 * Math.pow(Math.PI, 2) * Math.pow(s, 2) * value2 * coefficient2);
-    return processingTheResult(intermediateValue, j);
-}
-
-function processingTheResult(intermediateValue, j) {
-    if (j === 0) {
-            arr = ["mHz", "Hz", "kHz", "MHz", "GHz"];
-            a = 0.001;
-            b = 1;
+        this.processingTheResult(intermediateValue, j);
+    },
+    processingTheResult: function(intermediateValue, j) {
+        if (j === 0) {
+            arr = ["mHz", "Hz", "kHz", "MHz", "GHz"],
+            a = 0.001,
+            b = 1,
             c = 100000;
-    } else if (j === 1) {
-            arr = ["pH", "nH", "mkH", "mH", "H", "kH"];
-            a = 0.000000000001;
-            b = 0.000000001;
+        } else if (j === 1) {
+            arr = ["pH", "nH", "mkH", "mH", "H", "kH"],
+            a = 0.000000000001,
+            b = 0.000000001,
             c = 100000000000000;
-    } else if (j === 2) {
-            arr = ["pF", "nF", "mkF", "mF", "F", "kF"];
-            a = 0.000000000001;
-            b = 0.000000001;
+        } else if (j === 2) {
+            arr = ["pF", "nF", "mkF", "mF", "F", "kF"],
+            a = 0.000000000001,
+            b = 0.000000001,
             c = 100000000000000;
-    } 
-
-    for (let i = 0; i <= 5; i++) {
-        if(intermediateValue >= a && intermediateValue < b) {
-            result = `${Math.round(intermediateValue * c) / 100} ${obj.units(arr[i])}`;
-            return resultEnter(result, j);
+        } 
+    
+        for (let i = 0; i <= 5; i++) {
+            if(intermediateValue >= a && intermediateValue < b) {
+                result = `${Math.round(intermediateValue * c) / 100} ${obj.units(arr[i])}`;
+                return this.resultEnter(result, j);
+            }
+            a = a * 1000;
+            b = b * 1000;
+            c = c / 1000;
         }
-        a = a * 1000;
-        b = b * 1000;
-        c = c / 1000;
+    },
+    resultEnter: function(result, j) {
+        resultat[j].textContent = result;
     }
-}
-
-function resultEnter(result, j) {
-    resultat[j].textContent = result;
-}
+};
 
 function hideCalculyator() {
     calculyator.forEach(item => {
@@ -191,15 +175,15 @@ zakladki.addEventListener("click", (event) => {
 
 buttonF.addEventListener("click", (evt) => {
     evt.preventDefault();
-    start(0);
+    obj.start(0);
 });
 
 buttonL.addEventListener("click", (evt) => {
     evt.preventDefault();
-    start(1);
+    obj.start(1);
 });
 
 buttonC.addEventListener("click", (evt) => {
     evt.preventDefault();
-    start(2);
+    obj.start(2);
 });
