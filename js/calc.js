@@ -116,19 +116,19 @@ let obj = {
     },
     processingTheResult: function(intermediateValue, j) {
         if (j === 0) {
-            arr = ["mHz", "Hz", "kHz", "MHz", "GHz"],
-            a = 0.001,
-            b = 1,
+            arr = ["mHz", "Hz", "kHz", "MHz", "GHz"];
+            a = 0.001;
+            b = 1;
             c = 100000;
         } else if (j === 1) {
-            arr = ["pH", "nH", "mkH", "mH", "H", "kH"],
-            a = 0.000000000001,
-            b = 0.000000001,
+            arr = ["pH", "nH", "mkH", "mH", "H", "kH"];
+            a = 0.000000000001;
+            b = 0.000000001;
             c = 100000000000000;
         } else if (j === 2) {
-            arr = ["pF", "nF", "mkF", "mF", "F", "kF"],
-            a = 0.000000000001,
-            b = 0.000000001,
+            arr = ["pF", "nF", "mkF", "mF", "F", "kF"];
+            a = 0.000000000001;
+            b = 0.000000001;
             c = 100000000000000;
         } 
     
