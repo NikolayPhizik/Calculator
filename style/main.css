@@ -2,8 +2,7 @@
     width: 500px;
     height: 350px;
     margin: auto;
-    margin-top: 100px;
-    position: relative;
+    margin-top: 150px;;
 }
 
 .calc {
@@ -122,9 +121,7 @@ span {
     font-weight: bold;
 }
 
-.buttonF,
-.buttonL,
-.buttonC {
+.button{
     margin-top: 10px;
     margin-bottom: 15px;
     width: 150px;
@@ -136,9 +133,7 @@ span {
     background: linear-gradient(#f90909, #f95d5d);
 }
 
-.buttonF:hover,
-.buttonL:hover,
-.buttonC:hover {
+.button:hover {
     background: linear-gradient(#f95d5d, #f90909);
 }
 
