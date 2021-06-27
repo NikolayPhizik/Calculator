@@ -149,5 +149,5 @@ button.forEach((item, i) => {
     item.addEventListener('click', (evt) => {
         evt.preventDefault();
         obj.start(i);
-    })
+    });
 });
