@@ -121,7 +121,7 @@ span {
     font-weight: bold;
 }
 
-.button{
+.calculateButton{
     margin-top: 10px;
     margin-bottom: 15px;
     width: 150px;
@@ -133,23 +133,23 @@ span {
     background: linear-gradient(#f90909, #f95d5d);
 }
 
-.button:hover {
+.calculateButton:hover {
     background: linear-gradient(#f95d5d, #f90909);
 }
 
-.zakladki {
+.calculatorSelection {
     display: flex;
     justify-content: center;
 }
 
-.btn {
+.buttonSwitchingCalculators {
     background-color:burlywood;
     border-radius: 5px;
     margin-top: 10px;
     margin-right: 10px;
 }
 
-.btn:hover {
+.buttonSwitchingCalculators:hover {
     background-color:cadetblue;
 }
 
